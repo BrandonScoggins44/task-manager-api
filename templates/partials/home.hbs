@@ -1,0 +1,19 @@
+<p>Welcome to my Task App!
+    <br>Please Login, Logout, or Register below.</p>
+<br>
+<div class="top-border" style="display: flex;">
+    <div style="flex-grow: 1;"></div>
+    <div style="flex-grow: 1;">
+        <button id="loginNav" onclick="displayLogin()">Login</button>
+    </div>
+    <div style="flex-grow: 1;">
+        <button id="logoutNav" onclick="displayLogout()">Logout</button>
+    </div>
+    <div style="flex-grow: 1;">
+        <button id="registerNav" onclick="displayRegister()">Register</button>
+    </div>
+    <div style="flex-grow: 1;"></div>
+</div>
+<div class="top-border" id="loginForm" style="display: none;">{{>login}}</div>
+<div class="top-border" id="logoutForm" style="display: none;">{{>logout}}</div>
+<div class="top-border" id="registerForm" style="display: none;">{{>register}}</div>

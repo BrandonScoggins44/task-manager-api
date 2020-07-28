@@ -1,0 +1,22 @@
+<p id="taskMessage"></p>
+
+<div class="top-border" id="taskOptions" style="display: none;">
+    <button id="clearTaskButton" onclick="clearTaskFields()">Clear</button>
+    <input id="taskDescription" placeholder="Description.." onkeyup="buildTasksTable('clearMessage')">
+    <select name="taskCompleted" id="taskCompleted" onchange="buildTasksTable('clearMessage')" required>
+        <option value="">Status..</option>
+        <option value="0">In Progress</option>
+        <option value="1">Completed</option>
+    </select>
+    <button id="createTaskButton" onclick="createTask()">Create</button>
+    <button id="updateTaskButton" onclick="updateTask()">Update</button>
+    <button id="deleteTaskButton" onclick="deleteTask()">Delete</button>
+</div>
+<div id="tasksTableDiv" style="display: none;">
+    <table id="tasksTable" style="border-collapse: collapse; width: 100%">
+        <tr>
+            <th onclick="sortTasks(0)">Description</th>
+            <th class="taskCompleteness" onclick="sortTasks(1)">Completeness</th>
+        </tr>
+    </table>
+</div>

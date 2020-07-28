@@ -1,0 +1,23 @@
+<p id="profileMessage"></p>
+<p id="profileName"></p>
+<p id="profileAge"></p>
+<p id="profileEmail"></p>
+<p id="profileCreated"></p>
+<p id="profileUpdated"></p>
+
+<div class="top-border" id="profileOptions" style="display: flex;">
+    <div style="flex-grow: 1;"></div>
+    <div style="flex-grow: 1;">
+        <button id="updateUserNav" onclick="displayUpdate()">Update</button>
+    </div>
+    <div style="flex-grow: 1;">
+        <button id="deleteUserNav" onclick="displayDelete()">Delete</button>
+    </div>
+    <div style="flex-grow: 1;">
+        <button id="logoutEverywhereNav" onclick="displayLogoutEverywhere()">Logout Everywhere</button>
+    </div>
+    <div style="flex-grow: 1;"></div>
+</div>
+<div class="top-border" id="updateUserForm" style="display: none;">{{>updateUser}}</div>
+<div class="top-border" id="deleteUserForm" style="display: none;">{{>deleteUser}}</div>
+<div class="top-border" id="logoutEverywhereForm" style="display: none;">{{>logoutEverywhere}}</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Task App</title>
+    <link rel="icon" href="/img/taskPad.png">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    {{>header}}
+
+    <div class="main-content" id="mainContent">
+
+        <div id="home" class="top-border" style="display: none;">{{>home}}</div>
+        <div id="profile" class="top-border" style="display: none;">{{>profile}}</div>
+        <div id="tasks" class="top-border" style="display: none;">{{>tasks}}</div>
+        <div id="about" class="top-border" style="display: none;">{{>about}}</div>
+        <div id="help" class="top-border" style="display: none;">{{>help}}</div>
+        <div id="notFound" class="top-border" style="display: none;">{{>notFound}}</div>
+
+        <p id="messageOne"></p>
+    </div>
+
+    {{>footer}}
+
+    <script src="/js/app.js"></script>
+</body>
+
+</html>

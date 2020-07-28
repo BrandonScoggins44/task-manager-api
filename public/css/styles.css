@@ -1,0 +1,104 @@
+body {
+    color: #333333;
+    font-family: Arial;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+.top-border {
+    border-top: 1px solid #eeeeee;
+    padding: 16px 0;
+}
+
+footer {
+    color: #888888;
+    border-top: 1px solid #eeeeee;
+    margin-top: 16px;
+    padding: 16px 0;
+}
+
+header {
+    margin-top: 16px;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+header a {
+    color: #888888;
+    margin-right: 16px;
+    text-decoration: none;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.portrait {
+    width: 250px;
+}
+
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+select {
+    border: 1px solid #cccccc;
+    padding: 7px;
+    margin-bottom: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #888888;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    cursor: pointer;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.taskCompleteness {
+    width: 25%;
+}
+
+select:invalid {
+    color: gray;
+}
+
+select option:first-child {
+    color: gray;
+}
+
+select:invalid option:not(:first-child) {
+    color: black;
+}
