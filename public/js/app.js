@@ -50,6 +50,7 @@ let hashFound
 displayHome = (option) => {
     home.style.display = 'block'
     hashFound = true
+    messageOne.style.display = 'block'
     messageOne.textContent = ''
 
     if (option) {
@@ -66,6 +67,7 @@ displayHome = (option) => {
 displayProfile = (option) => {
     profile.style.display = 'block'
     hashFound = true
+    messageOne.style.display = 'block'
     messageOne.textContent = ''
 
     if (token && user) {
@@ -102,6 +104,7 @@ displayProfile = (option) => {
 displayTasks = () => {
     tasks.style.display = 'block'
     hashFound = true
+    messageOne.style.display = 'block'
     messageOne.textContent = ''
 
     if (token && user && userTasks) {
@@ -119,6 +122,7 @@ displayTasks = () => {
 displayAbout = () => {
     about.style.display = 'block'
     hashFound = true
+    messageOne.style.display = 'none'
 }
 
 displayHelp = () => {
@@ -471,6 +475,18 @@ populateTaskFields = (description, completed) => {
     console.log(description, completed)
     taskDescription.value = description
     taskCompleted.value = completed == 'Completed' ? '1' : '0'
+}
+
+clearTaskFields = () => {
+    messageOne.textContent = 'Clear is work in progress'
+}
+
+updateTask = () => {
+    messageOne.textContent = 'Update is work in progress'
+}
+
+deleteTask = () => {
+    messageOne.textContent = 'Delete is work in progress'
 }
 
 sortTasks = (n) => {
