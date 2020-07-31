@@ -1,40 +1,3 @@
-// const home = document.getElementById('home')
-// const profile = document.getElementById('profile')
-// const tasks = document.getElementById('tasks')
-// const about = document.getElementById('about')
-// const help = document.getElementById('help')
-// const notFound = document.getElementById('notFound')
-
-// const updateUserForm = document.getElementById('updateUserForm')
-// const deleteUserForm = document.getElementById('deleteUserForm')
-
-// const profileOptions = document.getElementById('profileOptions')
-
-// const loginForm = document.getElementById('loginForm')
-// const logoutForm = document.getElementById('logoutForm')
-// const registerForm = document.getElementById('registerForm')
-
-// const registerName = document.querySelector('#registerName')
-// const registerEmailAddress = document.querySelector('#registerEmailAddress')
-// const registerPassword = document.querySelector('#registerPassword')
-
-// const emailAddress = document.querySelector('#emailAddress')
-// const password = document.querySelector('#password')
-
-// const messageOne = document.querySelector('#message-1')
-
-// const profileMessage = document.querySelector('#profileMessage')
-// const profileName = document.querySelector('#profileName')
-// const profileAge = document.querySelector('#profileAge')
-// const profileEmail = document.querySelector('#profileEmail')
-// const profileCreated = document.querySelector('#profileCreated')
-// const profileUpdated = document.querySelector('#profileUpdated')
-
-// const updateName = document.querySelector('#updateName')
-// const updateAge = document.querySelector('#updateAge')
-// const updateEmailAddress = document.querySelector('#updateEmailAddress')
-// const updatePassword = document.querySelector('#updatePassword')
-
 let token
 let user
 let userTasks
@@ -474,13 +437,14 @@ buildTasksTable = (option) => {
 }
 
 populateTaskFields = (description, completed) => {
-    console.log(description, completed)
     taskDescription.value = description
     taskCompleted.value = completed == 'Completed' ? '1' : '0'
 }
 
 clearTaskFields = () => {
-    messageOne.textContent = 'Clear is work in progress'
+    taskDescription.value = ''
+    taskCompleted.value = ''
+    buildTasksTable()
 }
 
 updateTask = () => {
