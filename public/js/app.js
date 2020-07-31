@@ -374,31 +374,44 @@ createTask = async () => {
         let description = taskDescription.value
         let completeness = taskCompleted.value
 
+        let isUnique = true
+
         if (description.length > 0 && completeness.length > 0) {
-            try {
-                const response = await fetch('/tasks',
-                    {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify({ "description": description, "completed": completeness })
-                    })
 
-                if (response && response.status === 201) {
-                    data = await response.json()
+            userTasks.forEach((task) => {
+                if (task.description == description) {
+                    isUnique = false
                 }
-            } catch (e) {
-                console.log('Error fetching', e)
-            }
+            })
 
-            if (data) {
-                userTasks.push(data)
-                buildTasksTable()
-                messageOne.textContent = 'New task created!'
+            if (isUnique) {
+                try {
+                    const response = await fetch('/tasks',
+                        {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ "description": description, "completed": completeness })
+                        })
+
+                    if (response && response.status === 201) {
+                        data = await response.json()
+                    }
+                } catch (e) {
+                    console.log('Error fetching', e)
+                }
+
+                if (data) {
+                    userTasks.push(data)
+                    buildTasksTable()
+                    messageOne.textContent = 'New task created!'
+                } else {
+                    messageOne.textContent = 'Unable to create new task! Please try again.'
+                }
             } else {
-                messageOne.textContent = 'Unable to create new task! Please try again.'
+                messageOne.textContent = 'Unable to create new task! Task descriptions must be unique.'
             }
         } else {
             messageOne.textContent = 'Task description and status must be provided.'
@@ -432,7 +445,7 @@ buildTasksTable = (option) => {
         let newRow = tasksTable.insertRow(i + 1)
         newRow.insertCell(0).innerHTML = tasks[i].description
         newRow.insertCell(1).innerHTML = tasks[i].completed === true ? 'Completed' : 'In Progress'
-        newRow.addEventListener('click', function() { populateTaskFields(newRow.cells[0].innerHTML, newRow.cells[1].innerHTML) })
+        newRow.addEventListener('click', function () { populateTaskFields(newRow.cells[0].innerHTML, newRow.cells[1].innerHTML) })
     }
 }
 
@@ -444,15 +457,121 @@ populateTaskFields = (description, completed) => {
 clearTaskFields = () => {
     taskDescription.value = ''
     taskCompleted.value = ''
+    messageOne.textContent = ''
     buildTasksTable()
 }
 
-updateTask = () => {
-    messageOne.textContent = 'Update is work in progress'
+updateTask = async () => {
+
+    var data
+
+    if (token) {
+        let description = taskDescription.value
+        let completeness = taskCompleted.value
+
+        let matchFound = false
+        let foundMatch
+
+        if (description.length > 0 && completeness.length > 0) {
+
+            userTasks.forEach((task) => {
+                if (task.description == description) {
+                    matchFound = true
+                    foundMatch = task
+                }
+            })
+
+            if (matchFound) {
+                try {
+                    const response = await fetch(`/tasks/${foundMatch._id}`,
+                        {
+                            method: "PATCH",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ "completed": completeness })
+                        })
+
+                    if (response && response.status === 200) {
+                        data = await response.json()
+                    }
+                } catch (e) {
+                    console.log('Error fetching', e)
+                }
+
+                if (data) {
+                    userTasks[userTasks.findIndex((task) => task.description == foundMatch.description)] = data
+                    buildTasksTable()
+                    messageOne.textContent = 'Task updated!'
+                } else {
+                    messageOne.textContent = 'Unable to create new task! Please try again.'
+                }
+            } else {
+                messageOne.textContent = 'Unable to update task! Task description does not exist. Try creating a new task instead.'
+            }
+        } else {
+            messageOne.textContent = 'Task description and status must be provided.'
+        }
+    } else {
+        messageOne.textContent = 'You must be logged in to update tasks.'
+    }
 }
 
-deleteTask = () => {
-    messageOne.textContent = 'Delete is work in progress'
+deleteTask = async () => {
+
+    var data
+
+    if (token) {
+        let description = taskDescription.value
+        let completeness = taskCompleted.value
+
+        let matchFound = false
+        let foundMatch
+
+        if (description.length > 0 && completeness.length > 0) {
+
+            userTasks.forEach((task) => {
+                if (task.description == description) {
+                    matchFound = true
+                    foundMatch = task
+                }
+            })
+
+            if (matchFound) {
+                try {
+                    const response = await fetch(`/tasks/${foundMatch._id}`,
+                        {
+                            method: "DELETE",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            }
+                        })
+
+                    if (response && response.status === 200) {
+                        data = await response.json()
+                    }
+                } catch (e) {
+                    console.log('Error fetching', e)
+                }
+
+                if (data) {
+                    userTasks = userTasks.filter((task) => task.description != foundMatch.description)
+                    buildTasksTable()
+                    messageOne.textContent = 'Task deleted!'
+                } else {
+                    messageOne.textContent = 'Unable to delete task! Please try again.'
+                }
+            } else {
+                messageOne.textContent = 'Unable to delete task! Task description does not exist.'
+            }
+        } else {
+            messageOne.textContent = 'Task description and status must be provided.'
+        }
+    } else {
+        messageOne.textContent = 'You must be logged in to delete tasks.'
+    }
 }
 
 sortTasks = (n) => {
