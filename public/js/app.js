@@ -221,6 +221,7 @@ logout = async () => {
         if (response && response.status === 200) {
             token = undefined
             user = undefined
+            userTasks = undefined
             messageOne.textContent = 'Logout Successful!'
         } else {
             messageOne.textContent = 'Unable to logout. Please try again.'
@@ -285,6 +286,7 @@ register = async () => {
         if (data && data.token) {
             token = data.token
             user = data.user
+            userTasks = []
             messageOne.textContent = 'Registration Successful! You can now see your profile and create tasks. Look for our welcome email in your inbox!'
         } else {
             messageOne.textContent = 'Registration Failed! If you already have an account, please login.'
