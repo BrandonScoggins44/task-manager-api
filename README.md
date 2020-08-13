@@ -19,3 +19,7 @@ ensure input values meet expectations. Finally, MongoDB and Mongoose are used to
 <p>Some basic HTML and CSS is also used to construct a simple interface.</p>
 
 <p>GitHub is used for version control, and is setup to communicate with Heroku which is used to for "production" deployment.</p>
+
+## Development server
+
+Run `npm dev` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
