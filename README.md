@@ -1,7 +1,7 @@
 <h1>Task Manager</h1>
 
 <h2>Live Application</h2>
-<p>https://scoggins-task-manager.herokuapp.com//</p>
+<p>https://scoggins-task-manager.herokuapp.com/</p>
 
 <h2>Purpose</h2>
 <p>This application allows a user to register, login, and manage tasks. The user must first register an account by providing an email and password, and is notified of account
